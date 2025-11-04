@@ -2,8 +2,12 @@ Client
 
 Server
 
+npm install express nodemon cors morgan dotenv jsonwebtoken bcryptjs
+
 dotenv
 PORT=XXXX
+JWT_SECRET=XXXX
+DATABASE_URL=XXXX
 
 npm install prisma
 npx prisma init

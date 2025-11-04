@@ -15,7 +15,7 @@ const port = process.env.PORT;
 
 // Dynamically load all route files
 readdirSync("./routes").map((r) =>
-  app.use("/api/v1", require(`./routes/${r}`))
+  app.use("/api", require(`./routes/${r}`))
 );
 
 app.listen(port, () => {
