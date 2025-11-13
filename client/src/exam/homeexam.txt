@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โชคดีลอตโต้ - ซื้อเลข 2 ตัว 3 ตัว</title>
+    <!-- โหลด Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- โหลดฟอนต์ (ใช้ 'Kanit') -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Kanit', 'Inter', sans-serif;
+        }
+        /* สไตล์สำหรับปุ่มเลือกประเภทที่ถูกเลือก */
+        .bet-type-btn.selected {
+            background-color: #4f46e5; /* indigo-700 */
+            color: white;
+            border-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header (เหมือนเดิม) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-indigo-600">
+                โชคดีลอตโต้
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="text-gray-600 hover:text-indigo-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </button>
+                <button class="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-indigo-700 transition duration-300 text-sm">
+                    เข้าสู่ระบบ
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- Countdown Timer -->
+        <section class="text-center mb-6 p-4 bg-white rounded-lg shadow">
+            <h1 class="text-2xl font-bold text-indigo-800 mb-2">
+                งวดวันที่ 16 พฤศจิกายน 2568
+            </h1>
+            <p class="text-base text-gray-600">เหลือเวลาอีก</p>
+            <div class="flex justify-center space-x-3 text-center mt-2">
+                <div>
+                    <span class="text-3xl font-bold text-indigo-600">02</span>
+                    <span class="block text-xs text-gray-500">วัน</span>
+                </div>
+                <div>
+                    <span class="text-3xl font-bold text-indigo-600">10</span>
+                    <span class="block text-xs text-gray-500">ชั่วโมง</span>
+                </div>
+                <div>
+                    <span class="text-3xl font-bold text-indigo-600">35</span>
+                    <span class="block text-xs text-gray-500">นาที</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Betting UI -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- 1. Betting Form (คอลัมน์ซ้าย/หลัก) -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Quick Numbers -->
+                <section class="bg-white rounded-lg shadow p-5">
+                    <h2 class="font-semibold text-lg mb-3">เลขดังงวดนี้ (กดเพื่อใส่เลข)</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="popular-num bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-indigo-100 text-sm" data-num="59">59</button>
+                        <button class="popular-num bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-indigo-100 text-sm" data-num="89">89</button>
+                        <button class="popular-num bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-indigo-100 text-sm" data-num="789">789</button>
+                        <button class="popular-num bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-indigo-100 text-sm" data-num="123">123</button>
+                        <button class="popular-num bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-indigo-100 text-sm" data-num="25">25</button>
+                    </div>
+                </section>
+                
+                <!-- Number Input Form -->
+                <section class="bg-white rounded-lg shadow p-5">
+                    <h2 class="font-semibold text-lg mb-4">กรอกเลขที่ต้องการ</h2>
+                    <div class="space-y-4">
+                        <!-- ช่องใส่เลข -->
+                        <div>
+                            <label for="number-input" class="block text-sm font-medium text-gray-700 mb-1">ใส่เลข (2 หรือ 3 ตัว)</label>
+                            <input type="text" id="number-input" placeholder="เช่น 59, 789" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 text-xl font-semibold">
+                        </div>
+                        
+                        <!-- ช่องใส่เงิน -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="amount-straight" class="block text-sm font-medium text-gray-700 mb-1">จำนวนเงิน (เต็ง)</label>
+                                <input type="number" id="amount-straight" placeholder="บาท" class="w-full p-3 rounded-lg border-2 border-gray-300">
+                            </div>
+                            <div>
+                                <label for="amount-tote" class="block text-sm font-medium text-gray-700 mb-1">จำนวนเงิน (โต๊ด/กลับ)</label>
+                                <input type="number" id="amount-tote" placeholder="บาท" class="w-full p-3 rounded-lg border-2 border-gray-300">
+                            </div>
+                        </div>
+
+                        <!-- ปุ่มเลือกประเภท -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <button class="bet-type-btn border-2 border-indigo-500 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-50" data-type="3-top">3 ตัวบน</button>
+                            <button class="bet-type-btn border-2 border-indigo-500 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-50" data-type="3-tote">3 ตัวโต๊ด</button>
+                            <button class="bet-type-btn border-2 border-indigo-500 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-50" data-type="2-top">2 ตัวบน</button>
+                            <button class="bet-type-btn border-2 border-indigo-500 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-50" data-type="2-bottom">2 ตัวล่าง</button>
+                            <button class="bet-type-btn border-2 border-indigo-500 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-50" data-type="2-top-rev">2 ตัวบน (กลับ)</button>
+                            <button class="bet-type-btn border-2 border-indigo-500 text-indigo-600 font-semibold py-3 rounded-lg hover:bg-indigo-50" data-type="2-bottom-rev">2 ตัวล่าง (กลับ)</button>
+                        </div>
+                        
+                        <button id="add-to-cart-btn" class="w-full bg-indigo-600 text-white font-bold py-4 rounded-lg hover:bg-indigo-700 transition duration-300 text-lg">
+                            เพิ่มลงในโพย
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 2. Bet Slip / Cart (คอลัมน์ขวา) -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow p-5 sticky top-24">
+                    <h2 class="font-semibold text-xl mb-4 border-b pb-3">โพยของคุณ</h2>
+                    <div id="cart-items" class="space-y-3 max-h-96 overflow-y-auto">
+                        <!-- รายการโพยจะถูกเพิ่มที่นี่ด้วย JavaScript -->
+                        <p id="empty-cart-msg" class="text-gray-500 text-center py-4">ยังไม่มีรายการ</p>
+                    </div>
+                    
+                    <!-- สรุปยอด -->
+                    <div class="border-t mt-4 pt-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-medium text-gray-700">ยอดรวม</span>
+                            <span id="total-amount" class="text-2xl font-bold text-indigo-700">0 บาท</span>
+                        </div>
+                        <button class="w-full bg-amber-400 text-black font-bold py-3 rounded-full hover:bg-amber-500 transition duration-300 text-lg">
+                            ยืนยันการสั่งซื้อ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Latest Results (ปรับปรุงใหม่) -->
+        <section class="bg-white rounded-lg shadow p-6 mt-6">
+            <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">
+                ผลสลากงวดล่าสุด (1 พ.ย. 68)
+            </h2>
+            <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                <!-- รางวัลที่ 1 -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-lg font-medium text-red-600">รางวัลที่ 1</p>
+                    <h3 class="text-5xl font-bold text-red-600 my-2 tracking-wider">987<span class="text-blue-600">654</span></h3>
+                    <div class="flex justify-around text-lg mt-3">
+                        <p class="font-semibold">3 ตัวบน: <span class="text-blue-600">654</span></p>
+                        <p class="font-semibold">2 ตัวบน: <span class="text-blue-600">54</span></p>
+                    </div>
+                </div>
+                <!-- 2 ตัวล่าง -->
+                <div class="bg-gray-50 rounded-lg p-4 flex flex-col justify-center">
+                    <p class="text-lg font-medium text-gray-700">เลขท้าย 2 ตัว</p>
+                    <h3 class="text-5xl font-bold text-indigo-700 my-2 tracking-wider">32</h3>
+                    <div class="text-lg mt-3">
+                        <p class="font-semibold">2 ตัวล่าง: <span class="text-indigo-700">32</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works (ปรับปรุงใหม่) -->
+        <section class="py-12">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-10">ซื้อง่าย 3 ขั้นตอน</h2>
+                <div class="grid md:grid-cols-3 gap-8 md:gap-12">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-indigo-100 text-indigo-600 p-6 rounded-full mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">1. กรอกเลข & จำนวนเงิน</h3>
+                        <p class="text-gray-600">ใส่เลขที่ชอบ เลือกประเภท (บน/ล่าง/โต๊ด) และจำนวนเงิน</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-indigo-100 text-indigo-600 p-6 rounded-full mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">2. ยืนยันโพย</h3>
+                        <p class="text-gray-600">ตรวจสอบรายการในโพยทั้งหมด และกดยืนยันการสั่งซื้อ</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-indigo-100 text-indigo-600 p-6 rounded-full mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">3. รอรับรางวัล</h3>
+                        <p class="text-gray-600">ระบบแจ้งเตือนเมื่อถูกรางวัล โอนเงินเข้าบัญชีอัตโนมัติ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (เหมือนเดิม) -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto px-4">
+            <!-- ... (เนื้อหา Footer เหมือนเดิม) ... -->
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+                <p>&copy; 2025 โชคดีลอตโต้. สงวนลิขสิทธิ์</p>
+                <p class="mt-1">คำเตือน: การพนันเป็นสิ่งผิดกฎหมาย</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart Badge -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <div class="relative">
+            <button class="bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+            </button>
+            <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">0</span>
+        </div>
+    </div>
+
+    <!-- JavaScript สำหรับการทำงาน -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const numberInput = document.getElementById('number-input');
+            const amountStraightInput = document.getElementById('amount-straight');
+            const amountToteInput = document.getElementById('amount-tote');
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyCartMsg = document.getElementById('empty-cart-msg');
+            const totalAmountEl = document.getElementById('total-amount');
+            const cartBadge = document.getElementById('cart-badge');
+            const betTypeButtons = document.querySelectorAll('.bet-type-btn');
+            const popularNumButtons = document.querySelectorAll('.popular-num');
+
+            let cart = []; // { id, number, type, amount, displayType }
+            let selectedBetType = null;
+
+            // 1. เลือกประเภทการแทง
+            betTypeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    betTypeButtons.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    selectedBetType = {
+                        type: btn.dataset.type,
+                        text: btn.textContent.trim()
+                    };
+                    
+                    // Logic สำหรับช่อง 'โต๊ด/กลับ'
+                    if (selectedBetType.type.includes('tote') || selectedBetType.type.includes('rev')) {
+                        amountToteInput.disabled = false;
+                        amountStraightInput.disabled = true;
+                        amountStraightInput.value = '';
+                    } else {
+                        amountToteInput.disabled = true;
+                        amountStraightInput.disabled = false;
+                        amountToteInput.value = '';
+                    }
+                });
+            });
+            
+            // 2. กดปุ่มเลขดัง
+            popularNumButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    numberInput.value = btn.dataset.num;
+                });
+            });
+
+            // 3. กดปุ่ม "เพิ่มลงในโพย"
+            addToCartBtn.addEventListener('click', () => {
+                const number = numberInput.value.trim();
+                const amountStraight = parseInt(amountStraightInput.value) || 0;
+                const amountTote = parseInt(amountToteInput.value) || 0;
+                
+                let amount = 0;
+                let displayType = '';
+                let betType = '';
+
+                // Validation
+                if (!number) {
+                    alert('กรุณาใส่ตัวเลข');
+                    return;
+                }
+                if (!selectedBetType) {
+                    alert('กรุณาเลือกประเภทการแทง');
+                    return;
+                }
+
+                // กำหนดประเภทและจำนวนเงิน
+                if (selectedBetType.type.includes('tote') || selectedBetType.type.includes('rev')) {
+                    amount = amountTote;
+                    displayType = selectedBetType.text;
+                    betType = selectedBetType.type;
+                } else {
+                    amount = amountStraight;
+                    displayType = selectedBetType.text;
+                    betType = selectedBetType.type;
+                }
+
+                if (amount <= 0) {
+                    alert('กรุณาใส่จำนวนเงิน');
+                    return;
+                }
+
+                // ตรวจสอบความถูกต้องของเลข
+                if (betType.startsWith('3-') && number.length !== 3) {
+                    alert('สำหรับ 3 ตัว ต้องใส่เลข 3 หลัก');
+                    return;
+                }
+                if (betType.startsWith('2-') && number.length !== 2) {
+                    alert('สำหรับ 2 ตัว ต้องใส่เลข 2 หลัก');
+                    return;
+                }
+
+                // เพิ่มลงตะกร้า
+                const newItem = {
+                    id: Date.now(),
+                    number: number,
+                    type: betType,
+                    amount: amount,
+                    displayType: displayType
+                };
+                cart.push(newItem);
+                
+                // ถ้ามีเลขกลับ
+                if(betType.includes('rev')) {
+                    const reversedNumber = number.split('').reverse().join('');
+                    if (number !== reversedNumber) {
+                         cart.push({
+                            id: Date.now() + 1,
+                            number: reversedNumber,
+                            type: betType.replace('-rev', ''), // 2-top-rev -> 2-top
+                            amount: amount,
+                            displayType: displayType.replace(' (กลับ)', '')
+                        });
+                    }
+                }
+                
+                // ถ้าเป็น 3 ตัวโต๊ด (ง่ายๆ คือเพิ่มแค่รายการเดียว แต่ในระบบจริงต้องคำนวณ)
+                // ใน UI นี้ เราจะแสดงเป็น "3 ตัวโต๊ด" ไปเลย
+                
+                updateCartUI();
+                clearInputs();
+            });
+
+            // 4. อัปเดต UI ตะกร้า
+            function updateCartUI() {
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '';
+                    cartItemsContainer.appendChild(emptyCartMsg);
+                    emptyCartMsg.style.display = 'block';
+                } else {
+                    emptyCartMsg.style.display = 'none';
+                    cartItemsContainer.innerHTML = '';
+                    cart.forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'flex justify-between items-center bg-gray-50 p-3 rounded-lg';
+                        itemEl.innerHTML = `
+                            <div>
+                                <span class="font-semibold text-indigo-700 text-lg">${item.number}</span>
+                                <span class="text-sm text-gray-600 ml-2">(${item.displayType})</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="font-semibold text-lg">${item.amount} บ.</span>
+                                <button class="text-red-500 hover:text-red-700" data-id="${item.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        `;
+                        itemEl.querySelector('button').addEventListener('click', () => removeFromCart(item.id));
+                        cartItemsContainer.appendChild(itemEl);
+                    });
+                }
+
+                // อัปเดตยอดรวม
+                const total = cart.reduce((sum, item) => sum + item.amount, 0);
+                totalAmountEl.textContent = `${total} บาท`;
+                cartBadge.textContent = cart.length;
+            }
+
+            // 5. ลบออกจากตะกร้า
+            function removeFromCart(id) {
+                cart = cart.filter(item => item.id !== id);
+                updateCartUI();
+            }
+
+            // 6. ล้าง Input
+            function clearInputs() {
+                numberInput.value = '';
+                amountStraightInput.value = '';
+                amountToteInput.value = '';
+                amountStraightInput.disabled = false;
+                amountToteInput.disabled = false;
+                betTypeButtons.forEach(b => b.classList.remove('selected'));
+                selectedBetType = null;
+                numberInput.focus();
+            }
+        });
+    </script>
+
+</body>
+</html>

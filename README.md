@@ -1,5 +1,7 @@
 Client
 
+npm i react-router-dom
+
 Server
 
 npm install express nodemon cors morgan dotenv jsonwebtoken bcryptjs
