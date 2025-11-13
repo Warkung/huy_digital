@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const { getAllCustomers } = require("../controllers/customers");
+const { getAllUsers } = require("../controllers/admin");
+const { authCheck, adminCheck } = require("../middleware/authCheck");
 
-router.route("/admin").get(getAllCustomers);
+router.route("/users").get(authCheck, adminCheck, getAllUsers);
 
 module.exports = router;
