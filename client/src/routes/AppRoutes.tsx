@@ -5,7 +5,7 @@ import Shop from "../pages/public/Shop";
 const router = createBrowserRouter([
   // public
   { path: "/", element: <HomePage /> },
-  { path: "shop", element: <Shop /> },
+  { path: "history", element: <Shop /> },
 ]);
 
 export default function AppRoutes() {
